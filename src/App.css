@@ -32,7 +32,7 @@ html, body, #root {
   flex-direction: row;
   background-color: #FFF;
   padding: 0.1rem;
-  border-radius: 8px;
+  border-radius: 7px;
   max-width: 100%;
   width: 100%; 
   box-sizing: border-box; 
@@ -71,9 +71,9 @@ html, body, #root {
   cursor: pointer;
   color: #FFF;
   border: none;
-  border-radius: 6px;
+  border-radius: 7px;
   min-width: 48px;
-  width: 76px;
+  width: 80px;
 }
 
 .search-form button:hover {
@@ -92,6 +92,7 @@ html, body, #root {
   margin-top: 20px;
   background-color: #D9D9D9;
   border-radius: 8px;
+  width: 100%;
 }
 
 .error {
