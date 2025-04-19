@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import './App.css';
-import { FaGithub } from 'react-icons/fa6';
+import { FaGithub, FaSpinner } from 'react-icons/fa6';
 import { FaSearch } from 'react-icons/fa';
 import axios from 'axios';
 
@@ -8,6 +8,7 @@ function App() {
   const [username, setUsername] = useState('');
   const [user, setUser] = useState(null);
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async(e) => {
     e.preventDefault();
@@ -16,9 +17,12 @@ function App() {
       const {data} = await axios.get(`https://api.github.com/users/${username}`);
       setUser(data);
       setError('');
+      setLoading(true);
     } catch {
-      setUser(null)
+      setUser(null);
       setError(`Nenhum perfil foi encontrado com esse nome de usuário.\nTente novamente`)
+    } finally {
+      setLoading(false);
     }
   }  
   return (
@@ -36,21 +40,25 @@ function App() {
           placeholder='Digite um usuário do Github'
           value={username}
           onChange={e => setUsername(e.target.value)}
+          disabled={loading}
         />
-        <button>
-          <FaSearch size={24}/>
+        <button type='submit' disabled={loading}>
+           { loading
+            ? <FaSpinner className='spinner' size={24}/>
+            :  <FaSearch size={24}/>
+           }
         </button>
         </div>
 
         {error && ( 
-          <div className='container-error'>
+          <div className='container-error fade-in'>
             <p className='error'>{error}</p>
           </div>
           )}
 
         {user && (
           <div className='profile-container'>
-            <div className='profile-card'>
+            <div className='profile-card fade in'>
               <img className='profile-avatar' src={user.avatar_url} alt={`${user.name || user.login}'s Avatar`}/>
             </div>
             <div className='profile-details'>
