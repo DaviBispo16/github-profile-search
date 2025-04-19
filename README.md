@@ -32,7 +32,7 @@ Antes de começar, verifique se você tem os seguintes itens instalados:
 - Git
 
 ## Instalação
-1. Clone the repository:
+1. Clone o repositório:
    ```bash
    git clone https://github.com/DaviBispo16/github-profile-search.git
    cd github-profile-search
